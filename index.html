@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4th of July Celebration</title>
+
+    <!-- External Libraries -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>🎆 Happy 4th of July! 🇺🇸</h1>
+      <p>Celebrate Freedom with Fireworks, Food, and Fun!</p>
+    </header>
+
+    <main class="scene">
+      <!-- Fireworks Animation Layer -->
+      <div class="fireworks-area">
+        <div class="firework red"></div>
+        <div class="firework blue"></div>
+      </div>
+
+      <!-- BBQ -->
+      <section class="bbq-area">
+        <img src="assets/images/bbq.jpeg" alt="BBQ Grill" class="bbq" />
+        <p>Backyard BBQ Party 🍔🌭</p>
+      </section>
+
+      <!-- Flag & Anthem -->
+      <section class="flag-area">
+        <img
+          src="assets/images/usa-flag.png"
+          alt="American Flag"
+          class="flag"
+          onclick="playAnthem()"
+        />
+        <p>Click the flag to play the national anthem!</p>
+      </section>
+
+      <!-- Placeholder for Optional Features -->
+      <section class="bonus-features">
+        <!-- Custom features -->
+      </section>
+    </main>
+
+    <!-- Audio for Anthem -->
+    <audio id="anthem" src="assets/audio/anthem.mp3"></audio>
+
+    <script>
+      function playAnthem() {
+        const anthem = document.getElementById("anthem");
+        anthem.play();
+      }
+    </script>
+  </body>
+</html>
