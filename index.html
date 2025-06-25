@@ -1,66 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>4th of July Celebration</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>4th of July Celebration</title>
 
-    <!-- External Libraries -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css"
-    />
+  <!-- External Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" />
 
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="header">
-      <h1>🎆 Happy 4th of July! 🇺🇸</h1>
-      <p>Celebrate Freedom with Fireworks, Food, and Fun!</p>
-    </header>
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
 
-    <main class="scene">
-      <!-- Fireworks Animation Layer -->
-      <div class="fireworks-area">
-        <div class="firework red"></div>
-        <div class="firework blue"></div>
-      </div>
+  <!-- 🎆 Victorian Parade Background -->
+  <div class="parade-bg">
+    <div class="sky-overlay">
+      <img src="assets/images/eagle.png" class="eagle eagle-left" alt="Eagle" />
+      <img src="assets/images/eagle.png" class="eagle eagle-right" alt="Eagle" />
+    </div>
 
-      <!-- BBQ -->
-      <section class="bbq-area">
-        <img src="assets/images/bbq.jpeg" alt="BBQ Grill" class="bbq" />
-        <p>Backyard BBQ Party 🍔🌭</p>
-      </section>
+    <div class="parade-track">
+      <div class="parade-element float"></div>
+      <div class="parade-element horse"></div>
+      <div class="parade-element people"></div>
+      <div class="parade-element flags"></div>
+    </div>
+  </div>
 
-      <!-- Flag & Anthem -->
-      <section class="flag-area">
-        <img
-          src="assets/images/usa-flag.png"
-          alt="American Flag"
-          class="flag"
-          onclick="playAnthem()"
-        />
-        <p>Click the flag to play the national anthem!</p>
-      </section>
+  <!-- Main Celebration Scene -->
+  <header class="header">
+    <h1>🎆 Happy 4th of July! 🇺🇸</h1>
+    <p>Celebrate Freedom with Fireworks, Food, and Fun!</p>
+  </header>
 
-      <!-- Placeholder for Optional Features -->
-      <section class="bonus-features">
-        <!-- Custom features -->
-      </section>
-    </main>
+  <main class="scene">
+    <!-- Celebration Controls -->
+<section class="controls">
+    <button id="start-btn">Start Game 🎆</button>
+    <button id="reset-btn">Reset Score 🔄</button>
+  </section>
+  
 
-    <!-- Audio for Anthem -->
-    <audio id="anthem" src="assets/audio/anthem.mp3"></audio>
+    <!-- Fireworks Mini-Game -->
+    <section class="fireworks-area">
+      <h2>Click the Fireworks! 💥</h2>
+      <p>Score: <span id="score">0</span></p>
+      <div id="game-zone"></div>
+    </section>
 
-    <script>
-      function playAnthem() {
-        const anthem = document.getElementById("anthem");
-        anthem.play();
+    <!--  BBQ Section -->
+    <section class="bbq-area">
+      <img src="assets/images/bbq.png" alt="BBQ Grill" class="bbq" />
+      <p>Backyard BBQ Party 🍔🌭</p>
+    </section>
+
+    <!-- Flag and Anthem -->
+    <section class="flag-area">
+      <img src="assets/images/usa-flag.png" alt="American Flag" class="flag" onclick="playAnthem()" />
+      <p>Click the flag to play the national anthem!</p>
+    </section>
+  </main>
+
+  <!-- Anthem Audio -->
+  <audio id="anthem" src="assets/audio/anthem.mp3"></audio>
+
+  <!-- Fireworks Game Script -->
+  <script>
+    function playAnthem() {
+      document.getElementById("anthem").play();
+    }
+  
+    let score = 0;
+    let gameRunning = false;
+    let fireworkInterval;
+    const gameZone = document.getElementById("game-zone");
+    const scoreDisplay = document.getElementById("score");
+  
+    function spawnFirework() {
+      const fw = document.createElement("div");
+      fw.classList.add("burst-firework");
+      fw.style.top = Math.random() * 80 + "%";
+      fw.style.left = Math.random() * 90 + "%";
+  
+      fw.onclick = () => {
+        score++;
+        scoreDisplay.textContent = score;
+        fw.remove();
+      };
+  
+      gameZone.appendChild(fw);
+      setTimeout(() => fw.remove(), 1500);
+    }
+  
+    // Start Celebration
+    document.getElementById("start-btn").onclick = () => {
+      if (!gameRunning) {
+        fireworkInterval = setInterval(spawnFirework, 1200);
+        gameRunning = true;
       }
-    </script>
-  </body>
+    };
+  
+    // Reset Game
+    document.getElementById("reset-btn").onclick = () => {
+      score = 0;
+      scoreDisplay.textContent = score;
+      gameRunning = false;
+      clearInterval(fireworkInterval);
+      gameZone.innerHTML = '';
+    };
+  </script>
+  
+
+</body>
 </html>

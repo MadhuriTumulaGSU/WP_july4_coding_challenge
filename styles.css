@@ -1,81 +1,172 @@
-
 :root {
     --red: #b22234;
     --white: #ffffff;
     --blue: #3c3b6e;
-    --sky-night: linear-gradient(to top, #001f3f, #1e3a8a);
-    --text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   }
   
+  /* General Styles */
   body {
     margin: 0;
-    padding: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: var(--sky-night);
     color: var(--white);
     text-align: center;
+    background: #001f3f;
     overflow-x: hidden;
   }
   
+  /* Header */
   .header {
-    padding: 20px;
     background-color: var(--red);
-    color: var(--white);
-    text-shadow: var(--text-shadow);
+    padding: 20px;
+    text-shadow: 2px 2px 4px #000;
   }
   
+  /* Scene Container */
   .scene {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 40px;
     padding: 30px;
+    position: relative;
+    z-index: 1;
   }
   
-  /* Fireworks */
+  /* ===== Victorian Parade Animated Background ===== */
+  .parade-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    animation: skyTransition 15s ease-in-out infinite alternate;
+    z-index: -2;
+    overflow: hidden;
+  }
+  
+  /* Parade Ground Line */
+  .parade-bg::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to top, #654321, #3e2c1c);
+    z-index: 0;
+  }
+  
+  /* Parade Track Elements */
+  .parade-track {
+    position: absolute;
+    bottom: 80px;
+    width: 100%;
+    height: 150px;
+  }
+  
+  .parade-element {
+    position: absolute;
+    bottom: 0;
+    width: 80px;
+    height: 80px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: paradeScroll 25s linear infinite;
+  }
+  
+  .float { background-image: url('assets/images/float-icon.png'); animation-delay: 0s; left: -100px; }
+  .horse { background-image: url('assets/images/horse-icon.png'); animation-delay: 4s; left: -150px; }
+  .people { background-image: url('assets/images/people-icon.png'); animation-delay: 7s; left: -200px; }
+  .flags { background-image: url('assets/images/flags-icon.png'); animation-delay: 10s; left: -120px; }
+  
+  @keyframes paradeScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(130vw); }
+  }
+  
+  /* ===== Sky + Eagles ===== */
+  .sky-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    z-index: -1;
+  }
+  
+  .eagle {
+    width: 80px;
+    position: absolute;
+    top: 30px;
+    animation: flyAcross 20s linear infinite;
+  }
+  
+  .eagle-left {
+    left: -100px;
+    transform: scaleX(-1);
+    animation-delay: 0s;
+  }
+  
+  .eagle-right {
+    left: -150px;
+    top: 100px;
+    animation-delay: 10s;
+  }
+  
+  @keyframes flyAcross {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(120vw); }
+  }
+  
+  /* Twilight to Night Sky Gradient */
+  @keyframes skyTransition {
+    0% {
+      background: linear-gradient(to top, #fcd34d, #1e3a8a);
+    }
+    100% {
+      background: linear-gradient(to top, #001f3f, #000022);
+    }
+  }
+  
+  /* ===== Fireworks Game ===== */
   .fireworks-area {
     position: relative;
     width: 100%;
-    height: 200px;
+    height: 250px;
+    background: transparent;
+    overflow: hidden;
   }
   
-  .firework {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
+  #game-zone {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    animation: explode 1s infinite ease-out;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
   
-  .firework.red { background: var(--red); }
-  .firework.blue { background: var(--blue); }
+  .burst-firework {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #ff0, #f00, #00f);
+    border-radius: 50%;
+    animation: burst 1.5s ease-out forwards;
+    cursor: pointer;
+    z-index: 10;
+  }
   
-  @keyframes explode {
+  @keyframes burst {
     0% {
-      transform: scale(0);
+      transform: scale(0.2);
       opacity: 1;
     }
     100% {
-      transform: scale(2);
+      transform: scale(3);
       opacity: 0;
     }
   }
   
-  /* Flag Area */
-  .flag {
-    width: 120px;
-    height: auto;
-    cursor: pointer;
-    border: 3px solid var(--white);
-    transition: transform 0.3s ease;
-  }
-  .flag:hover {
-    transform: scale(1.1);
-  }
-  
-  /* BBQ Area */
+  /* ===== BBQ Section ===== */
   .bbq-area img {
     width: 150px;
     animation: smoke 2s infinite alternate;
@@ -86,6 +177,20 @@
     100% { transform: translateY(-20px); opacity: 0.2; }
   }
   
+  /* ===== Flag Section ===== */
+  .flag {
+    width: 120px;
+    height: auto;
+    cursor: pointer;
+    border: 3px solid var(--white);
+    transition: transform 0.3s ease;
+  }
+  
+  .flag:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Responsive Design */
   @media (max-width: 768px) {
     .scene {
       padding: 20px;
@@ -95,6 +200,9 @@
     }
     .bbq-area img {
       width: 100px;
+    }
+    .eagle {
+      width: 60px;
     }
   }
   
