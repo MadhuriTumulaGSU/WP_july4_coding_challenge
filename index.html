@@ -5,20 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>4th of July Celebration</title>
 
-  <!-- External Libraries -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" />
 
-  <!-- Custom Styles -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- 🎆 Victorian Parade Background -->
   <div class="parade-bg">
     <div class="sky-overlay">
-      <img src="assets/images/eagle.png" class="eagle eagle-left" alt="Eagle" />
-      <img src="assets/images/eagle.png" class="eagle eagle-right" alt="Eagle" />
+      <img src="assets/images/eagle.jpeg" class="eagle eagle-left" alt="Eagle" />
+      <img src="assets/images/eagle.jpeg" class="eagle eagle-right" alt="Eagle" />
     </div>
 
     <div class="parade-track">
@@ -29,14 +26,31 @@
     </div>
   </div>
 
-  <!-- Main Celebration Scene -->
   <header class="header">
     <h1>🎆 Happy 4th of July! 🇺🇸</h1>
     <p>Celebrate Freedom with Fireworks, Food, and Fun!</p>
   </header>
 
+<section class="history-section">
+    <h2>Why Do We Celebrate the 4th of July?</h2>
+    <p>
+      The Fourth of July, also known as Independence Day, marks the anniversary of the adoption of the Declaration of Independence on July 4, 1776.
+      On this day, the thirteen American colonies declared their independence from British rule.
+      It is a day to honor the founding of the United States, the values of freedom and democracy, and the bravery of those who fought for it.
+    </p>
+    <p>
+      Americans celebrate with fireworks, parades, family gatherings, and displays of the red, white, and blue — a symbol of unity and pride.
+    </p>
+    <p>
+      📜 You can read the full text of the Declaration of Independence here:
+      <a href="https://www.archives.gov/founding-docs/declaration-transcript" target="_blank" rel="noopener">
+        Declaration of Independence – National Archives
+      </a>
+    </p>
+  </section>
+  
+
   <main class="scene">
-    <!-- Celebration Controls -->
 <section class="controls">
     <button id="start-btn">Start Game 🎆</button>
     <button id="reset-btn">Reset Score 🔄</button>
@@ -52,7 +66,7 @@
 
     <!--  BBQ Section -->
     <section class="bbq-area">
-      <img src="assets/images/bbq.png" alt="BBQ Grill" class="bbq" />
+      <img src="assets/images/bbq.jpeg" alt="BBQ Grill" class="bbq" />
       <p>Backyard BBQ Party 🍔🌭</p>
     </section>
 
@@ -61,6 +75,7 @@
       <img src="assets/images/usa-flag.png" alt="American Flag" class="flag" onclick="playAnthem()" />
       <p>Click the flag to play the national anthem!</p>
     </section>
+
   </main>
 
   <!-- Anthem Audio -->
