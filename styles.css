@@ -40,42 +40,71 @@
     overflow: hidden;
   }
   
-  .parade-bg::after {
-    content: '';
-    position: absolute;
+  /* === Parade Ground Strip === */
+.parade-ground {
+    position: fixed;
     bottom: 0;
-    width: 100%;
-    height: 80px;
-    background: linear-gradient(to top, #654321, #3e2c1c);
-    z-index: 0;
+    left: 0;
+    width: 100vw;
+    height: 100px;
+    background: linear-gradient(to top, #5e3c1c, #855e42); /* Victorian cobblestone feel */
+    z-index: -1;
+    overflow: hidden;
+    box-shadow: inset 0 5px 10px rgba(0,0,0,0.3);
   }
   
-  .parade-track {
-    position: absolute;
-    bottom: 80px;
-    width: 100%;
-    height: 150px;
-  }
-  
-  .parade-element {
+  /* Inner scroll area for icons */
+  .parade-scroll {
     position: absolute;
     bottom: 0;
+    width: 500vw; /* Big enough to scroll */
+    height: 100px;
+    display: flex;
+    align-items: flex-end;
+    gap: 80px;
+    animation: scrollParade 30s linear infinite;
+  }
+  
+  /* Parade icons */
+  .parade-icon {
     width: 80px;
     height: 80px;
     background-size: contain;
     background-repeat: no-repeat;
-    animation: paradeScroll 25s linear infinite;
   }
   
-  .float { background-image: url('assets/images/float-icon.png'); animation-delay: 0s; left: -100px; }
-  .horse { background-image: url('assets/images/horse-icon.png'); animation-delay: 4s; left: -150px; }
-  .people { background-image: url('assets/images/people-icon.png'); animation-delay: 7s; left: -200px; }
-  .flags { background-image: url('assets/images/flags-icon.png'); animation-delay: 10s; left: -120px; }
+  /* Individual icons */
+  .parade-icon.float {
+    background-image: url('assets/images/float-icon.png');
+  }
   
-  @keyframes paradeScroll {
+  .parade-icon.horse {
+    background-image: url('assets/images/horse-icon.jpeg');
+  }
+  
+  .parade-icon.people {
+    background-image: url('assets/images/people-icon.png');
+  }
+  
+  /* Parade Emojis */
+.parade-emoji {
+    font-size: 3rem;
+    line-height: 1;
+    display: flex;
+    align-items: flex-end;
+    animation: bounce 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  @keyframes scrollParade {
     0% { transform: translateX(0); }
-    100% { transform: translateX(130vw); }
+    100% { transform: translateX(-400vw); }
   }
+  
   
   .sky-overlay {
     position: absolute;
